@@ -14,48 +14,73 @@ import Footer from './components/Footer.jsx'
 import Navbar from './components/Navbar.jsx'
 import AddBlog from './pages/addBlog.jsx'
 import AdminPanel from './pages/admin/adminPanel.jsx'
+import Login from './pages/auth/Login.jsx'
+import Register from './pages/auth/Register.jsx'
+import ProtectedRoutes from './ProtectedRoutes.jsx'
+import SemiPublicRoutes from './SemiPublicRoutes.jsx'
 
 const router = createBrowserRouter([
+  // these are public routes
   {
     path: '/',
-    element: <><Navbar/><App /><Footer /></>,
+    element: <><Navbar /><ServicePage /><Footer /></>,
   },
   {
     path: '/services',
-    element: <><Navbar/><ServicePage /></>,
+    element: <><Navbar /><ServicePage /></>,
   },
   {
     path: '/career',
-    element: <><Navbar/><CareerPage /></>,
+    element: <><Navbar /><CareerPage /></>,
   },
   {
     path: '/blog',
-    element: <><Navbar/><BlogPage /></>,
+    element: <><Navbar /><BlogPage /></>,
   },
   {
     path: '/blog/:id',
-    element: <><Navbar/><BlogPageDetail /></>,
+    element: <><Navbar /><BlogPageDetail /></>,
   },
   {
     path: '/portfolio',
-    element: <><Navbar/><PortfolioPage /></>,
+    element: <><Navbar /><PortfolioPage /></>,
   },
   {
     path: '/contact',
-    element: <><Navbar/><ContactUs /></>,
+    element: <><Navbar /><ContactUs /></>,
   },
   {
     path: '/why-choose-us',
-    element: <><Navbar/><WhyChooseUs /></>,
+    element: <><Navbar /><WhyChooseUs /></>,
   },
   {
     path: '/addBlog',
-    element: <><Navbar/><AddBlog /></>,
+    element: <><Navbar /><AddBlog /></>,
   },
+  // these are protected routes
   {
-    path: '/admin',
-    element: <><Navbar/><AdminPanel /></>,
+    element: <ProtectedRoutes />,
+    children: [
+      {
+        path: '/admin',
+        element: <><Navbar /><AdminPanel /></>,
+      },
+    ]
   },
+  // these routes will be accessible without login
+  {
+    element: <SemiPublicRoutes />,
+    children: [
+      {
+        path: '/Login',
+        element: <><Navbar /><Login /></>,
+      },
+      {
+        path: '/Register',
+        element: <><Navbar /><Register /></>,
+      },
+    ]
+  }
 ])
 
 createRoot(document.getElementById('root')).render(
