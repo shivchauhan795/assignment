@@ -11,7 +11,7 @@ copyright notice
 const Footer = () => {
     return (
         <>
-            <div className='bg-white/20 backdrop-blur-lg shadow-inner text-black flex flex-col pb-1'>
+            <div className='bg-white/20 backdrop-blur-lg shadow-2xl shadow-slate-700 text-black flex flex-col pb-1'>
 
                 <div className='flex justify-evenly p-5 gap-9 pb-10 flex-wrap'>
                     <div className='text-xl font-bold text-center flex flex-col gap-8'>
