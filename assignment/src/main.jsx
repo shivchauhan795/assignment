@@ -12,6 +12,8 @@ import WhyChooseUs from './pages/whyChooseUs.jsx'
 import BlogPageDetail from './pages/blogPageDetail.jsx'
 import Footer from './components/Footer.jsx'
 import Navbar from './components/Navbar.jsx'
+import AddBlog from './pages/addBlog.jsx'
+import AdminPanel from './pages/admin/adminPanel.jsx'
 
 const router = createBrowserRouter([
   {
@@ -45,7 +47,15 @@ const router = createBrowserRouter([
   {
     path: '/why-choose-us',
     element: <><Navbar/><WhyChooseUs /></>,
-  }
+  },
+  {
+    path: '/addBlog',
+    element: <><Navbar/><AddBlog /></>,
+  },
+  {
+    path: '/admin',
+    element: <><Navbar/><AdminPanel /></>,
+  },
 ])
 
 createRoot(document.getElementById('root')).render(
