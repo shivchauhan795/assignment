@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Footer from '../components/Footer';
 
 const careerPage = () => {
   const [formData, setFormData] = useState({
@@ -96,122 +97,126 @@ const careerPage = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 pt-20">
-      <h1 className="text-4xl font-bold text-center mb-6">Careers</h1>
-      <p className="text-center text-gray-600 mb-12">
-        Join our growing team and take your career to the next level!
-      </p>
+    <div>
+      <div className="container mx-auto px-4 pt-20 pb-20">
+        <h1 className="text-4xl font-bold text-center mb-6">Careers</h1>
+        <p className="text-center text-gray-600 mb-12">
+          Join our growing team and take your career to the next level!
+        </p>
 
-      {/* Job Openings */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-        {jobOpenings.map((job, index) => (
-          <div key={index} className="bg-gray-100 p-6 rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold mb-2">{job.title}</h2>
-            <p className="text-gray-700 mb-4">{job.description}</p>
-            <ul className="list-disc list-inside mb-4">
-              {job.requirements.map((req, idx) => (
-                <li key={idx} className="text-gray-600">
-                  {req}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      {/* Application Form */}
-      <h2 className="text-3xl font-bold text-center mb-6">Apply Now</h2>
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-2xl mx-auto bg-gray-100 p-8 rounded-lg shadow-md space-y-6"
-      >
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          />
+        {/* Job Openings */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          {jobOpenings.map((job, index) => (
+            <div key={index} className="bg-gray-100 p-6 rounded-lg shadow-md">
+              <h2 className="text-2xl font-bold mb-2">{job.title}</h2>
+              <p className="text-gray-700 mb-4">{job.description}</p>
+              <ul className="list-disc list-inside mb-4">
+                {job.requirements.map((req, idx) => (
+                  <li key={idx} className="text-gray-600">
+                    {req}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-            Email Address
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-            Phone Number (with country code)
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="jobProfile" className="block text-sm font-medium text-gray-700">
-            Job Profile
-          </label>
-          <select
-            id="jobProfile"
-            name="jobProfile"
-            value={formData.jobProfile}
-            onChange={handleChange}
-            required
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          >
-            <option value="">Select a Job Profile</option>
-            {jobOpenings.map((job, index) => (
-              <option key={index} value={job.title}>
-                {job.title}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label htmlFor="cv" className="block text-sm font-medium text-gray-700">
-            Upload CV
-          </label>
-          <input
-            type="file"
-            id="cv"
-            name="cv"
-            onChange={handleFileChange}
-            required
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        {/* Application Form */}
+        <h2 className="text-3xl font-bold text-center mb-6">Apply Now</h2>
+        <form
+          onSubmit={handleSubmit}
+          className="max-w-2xl mx-auto bg-gray-100 p-8 rounded-lg shadow-md space-y-6"
         >
-          Submit Application
-        </button>
-      </form>
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              Email Address
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+              Phone Number (with country code)
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="jobProfile" className="block text-sm font-medium text-gray-700">
+              Job Profile
+            </label>
+            <select
+              id="jobProfile"
+              name="jobProfile"
+              value={formData.jobProfile}
+              onChange={handleChange}
+              required
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="">Select a Job Profile</option>
+              {jobOpenings.map((job, index) => (
+                <option key={index} value={job.title}>
+                  {job.title}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="cv" className="block text-sm font-medium text-gray-700">
+              Upload CV
+            </label>
+            <input
+              type="file"
+              id="cv"
+              name="cv"
+              onChange={handleFileChange}
+              required
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Submit Application
+          </button>
+        </form>
+      </div>
+      <Footer />
+
     </div>
   );
 };

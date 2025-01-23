@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import Footer from '../components/Footer';
+
 const portfolioItems = [
   {
     industry: "Education",
@@ -32,40 +34,43 @@ const portfolioItems = [
   },
 ];
 
-const portfolioPage = () => {
+const PortfolioPage = () => {
   return (
-    <div className="bg-gray-100 min-h-screen pt-20">
-      {/* Header */}
-      <div className="text-center mb-10">
-        <h1 className="text-4xl font-bold text-gray-800">Our Portfolio</h1>
-        <p className="text-gray-600 mt-2">
-          Explore our successful projects across various industries
-        </p>
-      </div>
+    <div className="flex flex-col min-h-screen bg-gray-100 pt-20">
+      {/* Content Area */}
+      <div className="flex-grow pb-20">
+        <div className="text-center mb-10">
+          <h1 className="text-4xl font-bold text-gray-800">Our Portfolio</h1>
+          <p className="text-gray-600 mt-2">
+            Explore our successful projects across various industries
+          </p>
+        </div>
 
-      {/* Portfolio Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-8 lg:px-20">
-        {portfolioItems.map((item, index) => (
-          <div
-            key={index}
-            className="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform"
-          >
-            <img
-              src={item.image}
-              alt={item.industry}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-2xl font-semibold text-gray-800">
-                {item.industry}
-              </h3>
-              <p className="text-gray-600 mt-2">{item.description}</p>
+        {/* Portfolio Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-8 lg:px-20">
+          {portfolioItems.map((item, index) => (
+            <div
+              key={index}
+              className="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform"
+            >
+              <img
+                src={item.image}
+                alt={item.industry}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-2xl font-semibold text-gray-800">
+                  {item.industry}
+                </h3>
+                <p className="text-gray-600 mt-2">{item.description}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
+      <Footer />
     </div>
   );
 };
 
-export default portfolioPage
+export default PortfolioPage;

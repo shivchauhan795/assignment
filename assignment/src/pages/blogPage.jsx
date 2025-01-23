@@ -1,6 +1,7 @@
 import React from 'react'
 import BlogCard from "../components/BlogCard";
 import AdminBlogActions from "../components/AdminBlogActions";
+import Footer from '../components/Footer';
 
 const blogPage = () => {
   const blogPosts = [
@@ -22,19 +23,23 @@ const blogPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20 px-6">
-      <h1 className="text-3xl font-bold text-gray-800 text-center mb-8">Tech Blog</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {blogPosts.map((post, index) => (
-          <BlogCard
-            key={index}
-            title={post.title}
-            description={post.description}
-            date={post.date}
-          />
-        ))}
+    <div className='h-screen'>
+
+      <div className="min-h-screen bg-gray-50 pt-20 px-6 pb-20">
+        <h1 className="text-3xl font-bold text-gray-800 text-center mb-8">Tech Blog</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {blogPosts.map((post, index) => (
+            <BlogCard
+              key={index}
+              title={post.title}
+              description={post.description}
+              date={post.date}
+            />
+          ))}
+        </div>
+        <AdminBlogActions />
       </div>
-      <AdminBlogActions />
+      <Footer />
     </div>
   );
 };
