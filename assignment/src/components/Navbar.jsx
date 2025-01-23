@@ -1,19 +1,18 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const location = useLocation();  // Get current location
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
 
+    const isBlogPage = location.pathname.startsWith("/blog");
+
     return (
         <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-white/30 backdrop-blur-lg shadow-md rounded-full px-8 py-3 flex items-center justify-between">
-
-
-
-
             <div className="hidden sm:flex items-center gap-6">
                 <NavLink
                     to="/services"
@@ -26,6 +25,16 @@ const Navbar = () => {
                     Services
                 </NavLink>
                 <NavLink
+                    to="/portfolio"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-blue-500 font-semibold"
+                            : "text-gray-700 hover:text-blue-500 transition duration-300"
+                    }
+                >
+                    Portfolio
+                </NavLink>
+                <NavLink
                     to="/blog"
                     className={({ isActive }) =>
                         isActive
@@ -35,25 +44,27 @@ const Navbar = () => {
                 >
                     Blog
                 </NavLink>
+                {isBlogPage && (
+                    <NavLink
+                        to="/addBlog"
+                        className={({ isActive }) =>
+                            isActive
+                                ? "text-blue-500 font-semibold"
+                                : "text-gray-700 hover:text-blue-500 transition duration-300 font-bold"
+                        }
+                    >
+                        Add Blog
+                    </NavLink>
+                )}
                 <NavLink
-                    to="/career"
+                    to="/why-choose-us"
                     className={({ isActive }) =>
                         isActive
                             ? "text-blue-500 font-semibold"
                             : "text-gray-700 hover:text-blue-500 transition duration-300"
                     }
                 >
-                    Career
-                </NavLink>
-                <NavLink
-                    to="/portfolio"
-                    className={({ isActive }) =>
-                        isActive
-                            ? "text-blue-500 font-semibold"
-                            : "text-gray-700 hover:text-blue-500 transition duration-300"
-                    }
-                >
-                    Portfolio
+                    Why Us
                 </NavLink>
                 <NavLink
                     to="/contact"
@@ -66,24 +77,22 @@ const Navbar = () => {
                     Contact
                 </NavLink>
                 <NavLink
-                    to="/why-choose-us"
+                    to="/career"
                     className={({ isActive }) =>
                         isActive
                             ? "text-blue-500 font-semibold"
                             : "text-gray-700 hover:text-blue-500 transition duration-300"
                     }
                 >
-                    Why Us
+                    Career
                 </NavLink>
             </div>
-
 
             <button
                 onClick={toggleMenu}
                 className="sm:hidden text-gray-700 hover:text-blue-500 transition duration-300"
             >
                 {menuOpen ? (
-                    // Cross Icon
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -99,7 +108,6 @@ const Navbar = () => {
                         />
                     </svg>
                 ) : (
-                    // Hamburger Menu Icon
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -117,7 +125,6 @@ const Navbar = () => {
                 )}
             </button>
 
-
             {menuOpen && (
                 <div className="absolute top-16 left-0 w-full z-50 bg-white/85 backdrop-blur-2xl shadow-md rounded-lg flex flex-col items-center gap-4 py-4 sm:hidden">
                     <NavLink
@@ -132,6 +139,17 @@ const Navbar = () => {
                         Services
                     </NavLink>
                     <NavLink
+                        to="/portfolio"
+                        onClick={() => setMenuOpen(false)}
+                        className={({ isActive }) =>
+                            isActive
+                                ? "text-blue-500 font-semibold"
+                                : "text-gray-700 hover:text-blue-500 transition duration-300"
+                        }
+                    >
+                        Portfolio
+                    </NavLink>
+                    <NavLink
                         to="/blog"
                         onClick={() => setMenuOpen(false)}
                         className={({ isActive }) =>
@@ -142,8 +160,21 @@ const Navbar = () => {
                     >
                         Blog
                     </NavLink>
+                    {isBlogPage && (
+                        <NavLink
+                            to="/addBlog"
+                            onClick={() => setMenuOpen(false)}
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "text-blue-500 font-semibold"
+                                    : "text-gray-700 hover:text-blue-500 transition duration-300 font-bold"
+                            }
+                        >
+                            Add Blog
+                        </NavLink>
+                    )}
                     <NavLink
-                        to="/career"
+                        to="/why-choose-us"
                         onClick={() => setMenuOpen(false)}
                         className={({ isActive }) =>
                             isActive
@@ -151,18 +182,7 @@ const Navbar = () => {
                                 : "text-gray-700 hover:text-blue-500 transition duration-300"
                         }
                     >
-                        Career
-                    </NavLink>
-                    <NavLink
-                        to="/portfolio"
-                        onClick={() => setMenuOpen(false)}
-                        className={({ isActive }) =>
-                            isActive
-                                ? "text-blue-500 font-semibold"
-                                : "text-gray-700 hover:text-blue-500 transition duration-300"
-                        }
-                    >
-                        Portfolio
+                        Why Us
                     </NavLink>
                     <NavLink
                         to="/contact"
@@ -176,7 +196,7 @@ const Navbar = () => {
                         Contact
                     </NavLink>
                     <NavLink
-                        to="/why-choose-us"
+                        to="/career"
                         onClick={() => setMenuOpen(false)}
                         className={({ isActive }) =>
                             isActive
@@ -184,7 +204,7 @@ const Navbar = () => {
                                 : "text-gray-700 hover:text-blue-500 transition duration-300"
                         }
                     >
-                        Why Us
+                        Career
                     </NavLink>
                 </div>
             )}

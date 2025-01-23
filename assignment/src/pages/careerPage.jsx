@@ -138,7 +138,8 @@ const careerPage = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              placeholder='John Doe'
+              className="mt-1 block w-full h-9 pl-2 border-gray-300 rounded-md shadow-sm"
             />
           </div>
 
@@ -153,7 +154,8 @@ const careerPage = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              placeholder='john@gmail.com'
+              className="mt-1 block w-full h-9 pl-2 border-gray-300 rounded-md shadow-sm"
             />
           </div>
 
@@ -168,7 +170,8 @@ const careerPage = () => {
               value={formData.phone}
               onChange={handleChange}
               required
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              placeholder='+91 1234567890'
+              className="mt-1 block w-full h-9 pl-2 border-gray-300 rounded-md shadow-sm"
             />
           </div>
 
@@ -182,7 +185,7 @@ const careerPage = () => {
               value={formData.jobProfile}
               onChange={handleChange}
               required
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 block w-full h-9 pl-2 border-gray-300 rounded-md shadow-sm"
             >
               <option value="">Select a Job Profile</option>
               {jobOpenings.map((job, index) => (
@@ -203,13 +206,13 @@ const careerPage = () => {
               name="cv"
               onChange={handleFileChange}
               required
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 block w-full border-gray-300"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
           >
             Submit Application
           </button>

@@ -1,6 +1,5 @@
 import React from 'react'
 import BlogCard from "../components/BlogCard";
-import AdminBlogActions from "../components/AdminBlogActions";
 import Footer from '../components/Footer';
 
 const blogPage = () => {
@@ -34,10 +33,14 @@ const blogPage = () => {
               title={post.title}
               description={post.description}
               date={post.date}
+              className={`animate__animated animate__fadeInUp`}
+              style={{
+                animationDelay: `${index * 0.3}s`,
+                animationDuration: "0.8s",
+              }}
             />
           ))}
         </div>
-        <AdminBlogActions />
       </div>
       <Footer />
     </div>

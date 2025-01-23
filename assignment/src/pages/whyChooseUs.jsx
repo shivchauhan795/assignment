@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
+import 'animate.css';
 
 const WhyChooseUs = () => {
   const strengths = [
@@ -27,11 +28,34 @@ const WhyChooseUs = () => {
         "Our dedicated team collaborates closely with you to understand your vision and bring it to life with precision and creativity.",
       icon: "🤝",
     },
+    {
+      title: "Scalable Solutions",
+      description:
+        "We design solutions that grow with your business, ensuring flexibility and scalability as your needs evolve.",
+      icon: "📈",
+    },
+    {
+      title: "Data-Driven Insights",
+      description:
+        "Our solutions are built on data, allowing you to make informed decisions backed by real-time analytics and performance metrics.",
+      icon: "📊",
+    },
+    {
+      title: "24/7 Support",
+      description:
+        "We offer round-the-clock support to ensure your systems are always running smoothly and any issues are promptly addressed.",
+      icon: "💬",
+    },
+    {
+      title: "Security-First Approach",
+      description:
+        "We prioritize security at every level of our solutions, safeguarding your data and infrastructure with best-in-class security protocols.",
+      icon: "🔒",
+    },
   ];
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 pt-20">
-      {/* Main content */}
       <div className="flex-grow px-4 pb-20">
         <h1 className="text-4xl font-bold text-center mb-6">Why Choose Us</h1>
         <p className="text-center text-gray-600 mb-12">
@@ -41,7 +65,11 @@ const WhyChooseUs = () => {
           {strengths.map((item, index) => (
             <div
               key={index}
-              className="bg-gray-100 p-6 rounded-lg shadow-md flex items-start space-x-4"
+              className={`bg-gray-100 p-6 rounded-lg shadow-md flex items-start space-x-4 animate__animated animate__backInDown`}
+              style={{
+                animationDelay: `${index * 0.2}s`,
+                animationDuration: "0.9s",
+              }}
             >
               <span className="text-4xl">{item.icon}</span>
               <div>
@@ -52,8 +80,7 @@ const WhyChooseUs = () => {
           ))}
         </div>
       </div>
-      
-      {/* Footer */}
+
       <Footer />
     </div>
   );

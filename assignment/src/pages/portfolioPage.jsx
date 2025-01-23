@@ -1,36 +1,37 @@
 import React from 'react';
 import Footer from '../components/Footer';
+import 'animate.css';
 
 const portfolioItems = [
   {
     industry: "Education",
     description: "Comprehensive solutions for schools and institutions.",
-    image: "https://www.predictiveanalyticstoday.com/wp-content/uploads/2016/05/What-is-Education-Industry.jpg",
+    image: "https://concernusa.org/uploads/concern-rs83270-somalia-education-banner.jpg",
   },
   {
     industry: "Healthcare",
     description: "Digital platforms tailored for hospitals and clinics.",
-    image: "https://resources.freeagentcrm.com/wp-content/uploads/2021/01/healthcare-industry-trends-and-statistics.jpg",
+    image: "https://www.cato.org/sites/cato.org/files/styles/optimized/public/2021-01/GettyImages-1139851278.jpg?itok=VtCs0qNw",
   },
   {
     industry: "Hospitality",
     description: "Engaging platforms for hotels and resorts.",
-    image: "https://qloapps.com/wp-content/uploads/2020/12/Different-Categories-Of-the-Hospitality-Industry.jpg",
+    image: "https://image-tc.galaxy.tf/wijpeg-4j6wpshpa1whiltwgrunj9xix/piscine-1.jpg?width=1920",
   },
   {
     industry: "Beauty & Grooming",
     description: "Advanced solutions for salons and spas.",
-    image: "https://designtemplate.io/free-images/beauty-and-grooming/91/beauty-and-grooming-1.jpg",
+    image: "https://media.istockphoto.com/id/1856117770/photo/modern-beauty-salon.jpg?s=612x612&w=0&k=20&c=dVZtsePk2pgbqDXwVkMm-yIw5imnZ2rnkAruR7zf8EA=",
   },
   {
     industry: "E-commerce",
     description: "Intuitive and feature-rich online stores.",
-    image: "https://www.shopify.com/enterprise/global-ecommerce-marketplace.jpg",
+    image: "https://5.imimg.com/data5/SELLER/Default/2021/10/YL/KC/NY/12354778/ecommerce-online-shopping-website.png",
   },
   {
     industry: "Fitness",
     description: "Motivational, user-friendly platforms for gyms and fitness centers.",
-    image: "https://www.glofox.com/wp-content/uploads/2019/05/evolution-of-fitness-industry.jpg",
+    image: "https://media.istockphoto.com/id/1322158059/photo/dumbbell-water-bottle-towel-on-the-bench-in-the-gym.jpg?s=612x612&w=0&k=20&c=CIdh6LPGwU6U6lbvKCdd7LcppidaYwcDawXJI-b0yGE=",
   },
 ];
 
@@ -51,7 +52,11 @@ const PortfolioPage = () => {
           {portfolioItems.map((item, index) => (
             <div
               key={index}
-              className="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform"
+              className="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform animate__animated animate__fadeInDown"
+              style={{
+                animationDelay: `${index * 0.2}s`,
+                animationDuration: "0.9s",
+              }}
             >
               <img
                 src={item.image}
