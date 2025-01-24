@@ -23,7 +23,7 @@ const router = createBrowserRouter([
   // these are public routes
   {
     path: '/',
-    element: <><Navbar /><ServicePage /><Footer /></>,
+    element: <><Navbar /><ServicePage /></>,
   },
   {
     path: '/services',
