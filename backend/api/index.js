@@ -57,9 +57,6 @@ app.post("/register", async (request, response) => {
             error,
         });
     }
-    finally {
-        await client.close();
-    }
 
 });
 
@@ -105,9 +102,6 @@ app.post("/login", async (request, response) => {
             error,
         });
     }
-    finally {
-        await client.close();
-    }
 })
 
 // working
@@ -138,9 +132,6 @@ app.post('/api/addblog', async (req, res) => {
     } catch (error) {
         console.error("Error adding blog:", error);
         res.status(500).json({ message: "Failed to add blog. Please try again later." });
-    }
-    finally {
-        await client.close();
     }
 });
 
@@ -218,9 +209,6 @@ app.get("/api/blogs", async (req, res) => {
         console.error("Error fetching blogs:", error);
         res.status(500).json({ error: "Internal server error" });
     }
-    finally {
-        await client.close();
-    }
 });
 
 // working
@@ -241,9 +229,6 @@ app.get('/api/blog/:id', async (req, res) => {
     } catch (error) {
         console.error('Error fetching blog by ID:', error);
         res.status(500).json({ message: 'Internal Server Error' });
-    }
-    finally {
-        await client.close();
     }
 });
 
@@ -275,9 +260,6 @@ app.post('/api/subscribe', async (req, res) => {
         console.error(error);
         res.status(500).json({ message: 'Server error' });
     }
-    finally {
-        await client.close();
-    }
 });
 
 // working
@@ -308,9 +290,6 @@ app.post('/api/contact', async (req, res) => {
     } catch (error) {
         console.error('Error submitting contact form:', error);
         res.status(500).json({ message: 'Error submitting form. Please try again later.' });
-    }
-    finally {
-        await client.close();
     }
 });
 
@@ -357,8 +336,6 @@ app.post('/api/incrementVisit', async (req, res) => {
     } catch (error) {
         console.error("Error incrementing visit count:", error);
         res.status(500).json({ message: "Internal server error" });
-    } finally {
-        await client.close();
     }
 });
 
