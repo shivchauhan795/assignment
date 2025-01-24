@@ -126,8 +126,9 @@ app.post('/api/addblog', async (req, res) => {
             createdAt: new Date(),
             verified: false
         };
-        const blogEngagement = 0;
-        await client.connect();
+        if (!client) {
+            await client.connect();
+        }
         const db = client.db("assignment");
         const result = await db.collection("blogs").insertOne(blog);
         res.status(201).json({
@@ -175,7 +176,9 @@ app.put("/api/admin/blog/:id", authMiddleware, async (req, res) => {
     const { action } = req.body; // "approve" or "reject"
 
     try {
-        await client.connect();
+        if (!client) {
+            await client.connect();
+        }
         const db = client.db("assignment");
         const collection = db.collection("blogs");
         if (action === "approve") {
@@ -205,7 +208,9 @@ app.put("/api/admin/blog/:id", authMiddleware, async (req, res) => {
 // working
 app.get("/api/blogs", async (req, res) => {
     try {
-        await client.connect();
+        if (!client) {
+            await client.connect();
+        }
         const db = client.db("assignment");
         const blogs = await db.collection("blogs").find({ verified: true }).toArray();
         res.status(200).json({ blogs });
@@ -223,7 +228,9 @@ app.get('/api/blog/:id', async (req, res) => {
     console.log("hlo");
     const { id } = req.params;
     try {
-        await client.connect();
+        if (!client) {
+            await client.connect();
+        }
         const db = client.db("assignment");
         const blog = await db.collection('blogs').findOne({ id: id });
         if (blog) {
@@ -249,7 +256,9 @@ app.post('/api/subscribe', async (req, res) => {
     }
 
     try {
-        await client.connect();
+        if (!client) {
+            await client.connect();
+        }
         const db = client.db("assignment");
         const collection = db.collection("subscribers");
 
@@ -286,7 +295,9 @@ app.post('/api/contact', async (req, res) => {
     };
 
     try {
-        await client.connect();
+        if (!client) {
+            await client.connect();
+        }
         const db = client.db("assignment");
         const collection = db.collection("contact");
 
@@ -325,7 +336,9 @@ app.get('/api/admin/contacts', authMiddleware, async (req, res) => {
 // working
 app.post('/api/incrementVisit', async (req, res) => {
     try {
-        await client.connect();
+        if (!client) {
+            await client.connect();
+        }
         const db = client.db("assignment");
         const collection = db.collection("metrics");
 
