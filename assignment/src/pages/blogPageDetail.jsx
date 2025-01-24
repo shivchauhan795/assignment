@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 
 const BlogPageDetail = () => {
   const { id } = useParams();
+  const [loading, setLoading] = useState(true);
   const [blog, setBlog] = useState([]);
   const backendURL = import.meta.env.VITE_BackendURL || 'http://localhost:3000/';
   useEffect(() => {
@@ -17,6 +18,7 @@ const BlogPageDetail = () => {
         });
         const data = await response.json();
         setBlog(data);
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching blog data:', error);
       }
@@ -24,10 +26,13 @@ const BlogPageDetail = () => {
 
     fetchBlogData();
   }, [id]);
-  if (!blog) {
-    return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div> {/* Loading spinner */}
+      </div>
+    );
   }
-
   return (
     <div className="mt-24 flex flex-col min-h-screen">
       <div className="flex-grow pb-20">
