@@ -14,7 +14,7 @@ const AdminPanel = () => {
     const [showModal, setShowModal] = useState(false);
     const [selectedBlog, setSelectedBlog] = useState(null); // To store the selected blog's content
     const [selectedContact, setSelectedContact] = useState(null);
-
+    const [loading, setLoading] = useState(true);
 
     const backendURL = import.meta.env.VITE_BackendURL;
 
@@ -104,10 +104,20 @@ const AdminPanel = () => {
     };
 
     useEffect(() => {
-        fetchAdminData();
-        fetchContacts();
+        const fetchData = async () => {
+            await fetchAdminData();
+            await fetchContacts();
+            setLoading(false); // Set loading to false when data is loaded
+        };
+        fetchData();
     }, []);
-
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div> {/* Loading spinner */}
+            </div>
+        );
+    }
     return (
         <div>
 
