@@ -20,6 +20,17 @@ app.use(cors({
 }));
 app.options('*', cors());
 
+const connectToDatabase = async () => {
+    try {
+        await client.connect();
+        console.log('Connected to MongoDB');
+    } catch (error) {
+        console.error('Error connecting to the database', error);
+        process.exit(1);
+    }
+};
+
+connectToDatabase();
 
 app.get("/", (req, res) => {
     res.send(`Hello world!!`);
@@ -28,7 +39,9 @@ app.get("/", (req, res) => {
 app.post("/register", async (request, response) => {
     try {
         const hashedPassword = await bcrypt.hash(request.body.password, 10);
-        await client.connect();
+        if (!client) {
+            await client.connect();
+        }
         const db = client.db("assignment");
         const collection = db.collection("admin");
         const user = {
@@ -63,7 +76,9 @@ app.post("/register", async (request, response) => {
 //login
 app.post("/login", async (request, response) => {
     try {
-        await client.connect();
+        if (!client) {
+            await client.connect();
+        }
         const db = client.db("assignment");
         const collection = db.collection("admin");
         const user = await collection.findOne({ email: request.body.email });
