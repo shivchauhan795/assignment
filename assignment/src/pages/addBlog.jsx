@@ -60,7 +60,6 @@ const AddBlog = () => {
                 });
             }
         } catch (error) {
-            console.error("Error adding blog:", error);
             toast.error('Something went wrong. Please try again later.', {
                 position: "bottom-right",
                 autoClose: 2000,

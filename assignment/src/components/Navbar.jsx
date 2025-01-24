@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import Cookies from "universal-cookie";
 
+const cookies = new Cookies();
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const location = useLocation();  // Get current location
-
+    const token = cookies.get("TOKEN");
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
@@ -86,6 +88,28 @@ const Navbar = () => {
                 >
                     Career
                 </NavLink>
+                <NavLink
+                    to="/admin"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-blue-500 font-bold"
+                            : "text-gray-700 hover:text-blue-500 transition duration-300 font-bold"
+                    }
+                >
+                    Admin
+                </NavLink>
+                {token && (
+                    <NavLink
+                        to="/"
+                        className='font-bold text-red-600'
+                        onClick={() => {
+                            cookies.remove("TOKEN")
+                            navigate('/login')
+                        }}
+                    >
+                        Logout
+                    </NavLink>
+                )}
             </div>
 
             <button
@@ -206,6 +230,28 @@ const Navbar = () => {
                     >
                         Career
                     </NavLink>
+                    <NavLink
+                        to="/admin"
+                        className={({ isActive }) =>
+                            isActive
+                                ? "text-blue-500 font-bold"
+                                : "text-gray-700 hover:text-blue-500 transition duration-300 font-bold"
+                        }
+                    >
+                        Admin
+                    </NavLink>
+                    {token && (
+                        <NavLink
+                            to="/"
+                            className='font-bold text-red-600'
+                            onClick={() => {
+                                cookies.remove("TOKEN")
+                                navigate('/login')
+                            }}
+                        >
+                            Logout
+                        </NavLink>
+                    )}
                 </div>
             )}
         </nav>

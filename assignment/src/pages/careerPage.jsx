@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Footer from '../components/Footer';
 
 const careerPage = () => {
+  const backendURL = import.meta.env.VITE_BackendURL || 'http://localhost:3000/';
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -63,37 +64,7 @@ const careerPage = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const form = new FormData();
-    form.append("name", formData.name);
-    form.append("email", formData.email);
-    form.append("phone", formData.phone);
-    form.append("jobProfile", formData.jobProfile);
-    form.append("cv", formData.cv);
-
-    try {
-      const response = await fetch("http://localhost:5000/api/careers", {
-        method: "POST",
-        body: form,
-      });
-
-      if (response.ok) {
-        alert("Your application has been submitted successfully!");
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          jobProfile: "",
-          cv: null,
-        });
-      } else {
-        alert("There was an error submitting your application. Please try again.");
-      }
-    } catch (error) {
-      console.error("Error submitting application:", error);
-      alert("Something went wrong. Please try again later.");
-    }
+    alert("This function is currently not working!!")
   };
 
   return (
@@ -164,7 +135,7 @@ const careerPage = () => {
               Phone Number (with country code)
             </label>
             <input
-              type="tel"
+              type="number"
               id="phone"
               name="phone"
               value={formData.phone}

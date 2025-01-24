@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Footer from '../components/Footer';
 
 const contactUs = () => {
+  const backendURL = import.meta.env.VITE_BackendURL || 'http://localhost:3000/';
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,8 +21,7 @@ const contactUs = () => {
     e.preventDefault();
 
     try {
-      // Replace with your backend API endpoint
-      const response = await fetch("http://localhost:5000/api/contact", {
+      const response = await fetch(`${backendURL}api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

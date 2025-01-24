@@ -1,26 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import BlogCard from "../components/BlogCard";
 import Footer from '../components/Footer';
 
 const blogPage = () => {
-  const blogPosts = [
-    {
-      title: "The Future of Web Development",
-      description: "Explore the latest trends and technologies shaping web development.",
-      date: "January 20, 2025",
-    },
-    {
-      title: "Understanding React 18 Features",
-      description: "A deep dive into the new features and improvements in React 18.",
-      date: "January 15, 2025",
-    },
-    {
-      title: "Mastering Tailwind CSS",
-      description: "How to build stunning, responsive UIs with Tailwind CSS.",
-      date: "January 10, 2025",
-    },
-  ];
+  const backendURL = import.meta.env.VITE_BackendURL;
 
+
+  const [blogPosts, setBlogPosts] = useState([]);
+  useEffect(() => {
+    const getBlogs = async () => {
+      try {
+        const response = await fetch(`${backendURL}api/blogs`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setBlogPosts(data.blogs); // Assuming the API returns { blogs: [...] }
+        } else {
+          console.error("Failed to fetch blogs:", response.status);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getBlogs();
+  }, []);
   return (
     <div className='h-screen'>
 
@@ -29,10 +36,11 @@ const blogPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogPosts.map((post, index) => (
             <BlogCard
-              key={index}
+              key={post.id}
               title={post.title}
-              description={post.description}
-              date={post.date}
+              description={post.content}
+              onClick={() => window.location.href = `/blog/${post.id}`}
+              date={new Date(post.createdAt).toLocaleString()}
               className={`animate__animated animate__fadeInUp`}
               style={{
                 animationDelay: `${index * 0.3}s`,

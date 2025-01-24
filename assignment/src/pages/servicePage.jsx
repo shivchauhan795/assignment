@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../components/Footer";
 import "animate.css";
 import video from "../assets/v1.mp4";
@@ -32,6 +32,28 @@ const services = [
 ];
 
 const servicePage = () => {
+const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/";
+  useEffect(() => {
+    const updateWebsiteVisitCount = async () => {
+      try {
+        const response = await fetch(`${backendURL}api/incrementVisit`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (response.ok) {
+          console.log("Website visit count updated successfully");
+        } else {
+          console.error("Failed to update website visit count");
+        }
+      } catch (error) {
+        console.error("Error updating website visit count:", error);
+      }
+    }
+    updateWebsiteVisitCount();
+  }, []);
+
   return (
     <div className="h-screen">
 

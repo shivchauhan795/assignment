@@ -1,16 +1,88 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
 
-/*
-
-social media links
-subscription form - Collect email addresses for newsletters with admin notifications.
-contact email address
-copyright notice
-
-*/
 const Footer = () => {
+    const [email, setEmail] = useState('');
+    const backendURL = import.meta.env.VITE_BackendURL || 'http://localhost:3000/';
+    const handleSubscribe = async (e) => {
+        e.preventDefault();
+
+        if (!email) {
+            toast.warn('Please enter an email address.', {
+                position: "bottom-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            })
+            return;
+        }
+
+        try {
+            const response = await fetch(`${backendURL}api/subscribe`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                toast.success('Subscribed successfully!', {
+                    position: "bottom-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+                setEmail('');
+            } else {
+                toast.error('Failed to subscribe!', {
+                    position: "bottom-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            }
+        } catch (error) {
+            toast.error('Error while subscribing!', {
+                position: "bottom-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+        }
+    };
     return (
         <>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <div className='bg-white/20 backdrop-blur-lg shadow-2xl shadow-slate-700 text-black flex flex-col pb-1'>
 
                 <div className='flex justify-evenly p-5 gap-9 pb-10 flex-wrap'>
@@ -38,10 +110,10 @@ const Footer = () => {
                     <div className='text-xl font-bold text-center flex flex-col gap-8'>
                         Subscribe to our Newsletter:
                         <div >
-                            <form className='flex flex-wrap justify-center gap-4'>
+                            <form className='flex flex-wrap justify-center gap-4' onSubmit={handleSubscribe}>
 
-                                <input type="email" placeholder="Email Address" className='font-normal w-60 text-base p-1 pl-2 rounded-md border border-black' />
-                                <button className='font-medium text-base p-2 px-3 rounded-md bg-slate-500 text-white' type="submit">Subscribe</button>
+                                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email Address" className='font-normal w-60 text-base p-1 pl-2 rounded-md border border-black' />
+                                <button type="submit" className='font-medium text-base p-2 px-3 rounded-md bg-slate-500 text-white'>Subscribe</button>
 
                             </form>
                         </div>
