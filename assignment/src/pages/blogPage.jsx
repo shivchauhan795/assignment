@@ -5,8 +5,9 @@ import Footer from '../components/Footer';
 const blogPage = () => {
   const backendURL = import.meta.env.VITE_BackendURL;
 
-
+  const [loading, setLoading] = useState(true);
   const [blogPosts, setBlogPosts] = useState([]);
+
   useEffect(() => {
     const getBlogs = async () => {
       try {
@@ -18,7 +19,8 @@ const blogPage = () => {
         });
         if (response.ok) {
           const data = await response.json();
-          setBlogPosts(data.blogs); // Assuming the API returns { blogs: [...] }
+          setBlogPosts(data.blogs);
+          setLoading(false);
         } else {
           console.error("Failed to fetch blogs:", response.status);
         }
@@ -28,6 +30,14 @@ const blogPage = () => {
     }
     getBlogs();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div> {/* Loading spinner */}
+      </div>
+    );
+  }
   return (
     <div className='h-screen'>
 
