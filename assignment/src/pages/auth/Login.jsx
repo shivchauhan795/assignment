@@ -131,7 +131,7 @@ const Login = () => {
                     Sign In
                   </button>
 
-                  <p className="text-sm font-light text-gray-500 ">
+                  {/* <p className="text-sm font-light text-gray-500 ">
                     Don’t have an account yet?{' '}
                     <Link
                       to="/register"
@@ -139,7 +139,7 @@ const Login = () => {
                     >
                       Sign up
                     </Link>
-                  </p>
+                  </p> */}
                 </form>
               </div>
             </div>
