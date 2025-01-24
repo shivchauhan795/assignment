@@ -32,7 +32,7 @@ const services = [
 ];
 
 const servicePage = () => {
-const backendURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/";
+const backendURL = import.meta.env.VITE_BackendURL || "http://localhost:3000/";
   useEffect(() => {
     const updateWebsiteVisitCount = async () => {
       try {
