@@ -113,7 +113,7 @@ app.post("/login", async (request, response) => {
         await client.close();
     } catch (error) {
         response.status(404).send({
-            message: "Email not found",
+            message: "Error logging in",
             error,
         });
     }
@@ -228,7 +228,6 @@ app.get("/api/blogs", async (req, res) => {
 
 // working
 app.get('/api/blog/:id', async (req, res) => {
-    console.log("hlo");
     const { id } = req.params;
     try {
         if (!client) {
