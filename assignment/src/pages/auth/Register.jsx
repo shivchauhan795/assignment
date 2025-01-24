@@ -31,7 +31,7 @@ const Register = () => {
             })
             setuser({ email: '', password: '', confirmpassword: '' })
             if (response.ok) {
-                toast('Registration Successfull!!', {
+                toast.success('Registration Successfull!!', {
                     position: "bottom-right",
                     autoClose: 2000,
                     hideProgressBar: false,
@@ -48,7 +48,7 @@ const Register = () => {
 
             }
             else {
-                toast('Error, Same Email Found!!', {
+                toast.error('Error, Same Email Found!!', {
                     position: "bottom-right",
                     autoClose: 2000,
                     hideProgressBar: false,
@@ -61,7 +61,7 @@ const Register = () => {
             }
         }
         else {
-            toast('Fill all the details!!', {
+            toast.warn('Fill all the details!!', {
                 position: "bottom-right",
                 autoClose: 2000,
                 hideProgressBar: false,

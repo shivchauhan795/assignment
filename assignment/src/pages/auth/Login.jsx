@@ -32,7 +32,7 @@ const Login = () => {
       if (!response.ok) {
         const error = await response.json();
         setUser({ email: '', password: '' })
-        toast(`${error.message}!!`, {
+        toast.error(`${error.message}!!`, {
           position: 'bottom-right',
           autoClose: 2000,
           hideProgressBar: false,
@@ -52,7 +52,7 @@ const Login = () => {
         path: "/",
       });
 
-      toast('Login Successful!!', {
+      toast.success('Login Successful!!', {
         position: 'bottom-right',
         autoClose: 2000,
         hideProgressBar: false,
