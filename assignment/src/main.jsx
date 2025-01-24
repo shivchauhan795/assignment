@@ -18,7 +18,7 @@ import Login from './pages/auth/Login.jsx'
 import Register from './pages/auth/Register.jsx'
 import ProtectedRoutes from './ProtectedRoutes.jsx'
 import SemiPublicRoutes from './SemiPublicRoutes.jsx'
-
+import NotFound from './pages/notFound.jsx'
 const router = createBrowserRouter([
   // these are public routes
   {
@@ -56,6 +56,10 @@ const router = createBrowserRouter([
   {
     path: '/addBlog',
     element: <><Navbar /><AddBlog /></>,
+  },
+  {
+    path: '/*',
+    element: <><NotFound /></>,
   },
   // these are protected routes
   {
