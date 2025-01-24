@@ -39,7 +39,7 @@ app.get("/", (req, res) => {
 app.post("/register", async (request, response) => {
     try {
         const hashedPassword = await bcrypt.hash(request.body.password, 10);
-        
+
         const db = client.db("assignment");
         const collection = db.collection("admin");
         const user = {
@@ -61,7 +61,6 @@ app.post("/register", async (request, response) => {
             result,
         });
 
-        await client.close();
     } catch (error) {
         response.status(500).send({
             message: "Error creating user",
@@ -74,7 +73,7 @@ app.post("/register", async (request, response) => {
 //login
 app.post("/login", async (request, response) => {
     try {
-        
+
         const db = client.db("assignment");
         const collection = db.collection("admin");
         const user = await collection.findOne({ email: request.body.email });
@@ -106,7 +105,6 @@ app.post("/login", async (request, response) => {
                 token,
             }
         });
-        await client.close();
     } catch (error) {
         response.status(404).send({
             message: "Error logging in",
@@ -131,7 +129,7 @@ app.post('/api/addblog', async (req, res) => {
             createdAt: new Date(),
             verified: false
         };
-        
+
         const db = client.db("assignment");
         const result = await db.collection("blogs").insertOne(blog);
         res.status(201).json({
@@ -147,7 +145,7 @@ app.post('/api/addblog', async (req, res) => {
 // working
 app.get("/api/admin", authMiddleware, async (req, res) => {
     try {
-        
+
         const db = client.db("assignment");
 
         const [visitCount, blogs] = await Promise.all([
@@ -174,7 +172,7 @@ app.put("/api/admin/blog/:id", authMiddleware, async (req, res) => {
     const { action } = req.body; // "approve" or "reject"
 
     try {
-        
+
         const db = client.db("assignment");
         const collection = db.collection("blogs");
         if (action === "approve") {
@@ -204,7 +202,7 @@ app.put("/api/admin/blog/:id", authMiddleware, async (req, res) => {
 // working
 app.get("/api/blogs", async (req, res) => {
     try {
-        
+
         const db = client.db("assignment");
         const blogs = await db.collection("blogs").find({ verified: true }).toArray();
         res.status(200).json({ blogs });
@@ -218,7 +216,7 @@ app.get("/api/blogs", async (req, res) => {
 app.get('/api/blog/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        
+
         const db = client.db("assignment");
         const blog = await db.collection('blogs').findOne({ id: id });
         if (blog) {
@@ -241,7 +239,7 @@ app.post('/api/subscribe', async (req, res) => {
     }
 
     try {
-        
+
         const db = client.db("assignment");
         const collection = db.collection("subscribers");
 
@@ -275,7 +273,7 @@ app.post('/api/contact', async (req, res) => {
     };
 
     try {
-        
+
         const db = client.db("assignment");
         const collection = db.collection("contact");
 
@@ -292,7 +290,7 @@ app.post('/api/contact', async (req, res) => {
 // working
 app.get('/api/admin/contacts', authMiddleware, async (req, res) => {
     try {
-        
+
         const db = client.db('assignment');
         const collection = db.collection('contact');
 
@@ -309,7 +307,7 @@ app.get('/api/admin/contacts', authMiddleware, async (req, res) => {
 // working
 app.post('/api/incrementVisit', async (req, res) => {
     try {
-        
+
         const db = client.db("assignment");
         const collection = db.collection("metrics");
 
